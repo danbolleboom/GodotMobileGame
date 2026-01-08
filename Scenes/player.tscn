@@ -1,0 +1,21 @@
+[gd_scene load_steps=5 format=3 uid="uid://bd75e2k4dd304"]
+
+[ext_resource type="Script" uid="uid://ci1wvlorq81e7" path="res://Scripts/player_movement.gd" id="1_v0iea"]
+[ext_resource type="Script" uid="uid://1cu5bi8y6av6" path="res://Scripts/attack_controller.gd" id="2_cvnsp"]
+[ext_resource type="PackedScene" uid="uid://c5ueclcie2is4" path="res://Scenes/projectile.tscn" id="3_6t5aa"]
+
+[sub_resource type="PrismMesh" id="PrismMesh_v0iea"]
+
+[node name="Player" type="Node3D"]
+script = ExtResource("1_v0iea")
+raycastLayerMask = 32
+
+[node name="Mesh" type="MeshInstance3D" parent="."]
+mesh = SubResource("PrismMesh_v0iea")
+
+[node name="AttackController" type="Node3D" parent="."]
+script = ExtResource("2_cvnsp")
+projectileScene = ExtResource("3_6t5aa")
+
+[node name="AttackSource" type="Node3D" parent="AttackController"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.7319852)

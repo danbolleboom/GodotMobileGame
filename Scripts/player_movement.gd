@@ -1,0 +1,35 @@
+extends Node3D
+
+@export_flags_2d_physics var raycastLayerMask;
+@export var movementLimits: Vector2
+var pointerPosition: float = 0
+var startPosition: Vector3
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	startPosition = position;
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pointerPosition = ScreenPointToRay().x;
+	
+	pointerPosition = clamp(pointerPosition, movementLimits.x, movementLimits.y);
+	position = startPosition + Vector3(pointerPosition, 0, 0);
+	pass
+
+func ScreenPointToRay() -> Vector3:
+	var spaceState = get_world_3d().direct_space_state
+	var mousePos = get_viewport().get_mouse_position()
+	var camera = get_tree().root.get_camera_3d()
+	
+	var rayOrigin = camera.project_ray_origin(mousePos)
+	var rayEnd = rayOrigin + camera.project_ray_normal(mousePos) * 200
+	var params = PhysicsRayQueryParameters3D.create(rayOrigin, rayEnd, raycastLayerMask)
+	
+	var rayArray = spaceState.intersect_ray(params)
+	
+	if rayArray.has("position"):
+		return rayArray["position"]
+	return Vector3()

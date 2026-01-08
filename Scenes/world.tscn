@@ -1,0 +1,61 @@
+[gd_scene load_steps=7 format=3 uid="uid://dnddunlw74rcw"]
+
+[ext_resource type="PackedScene" uid="uid://bd75e2k4dd304" path="res://Scenes/player.tscn" id="1_a02cp"]
+[ext_resource type="PackedScene" uid="uid://b6nr0kxkm8l3k" path="res://Scenes/enemy.tscn" id="2_go701"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_a02cp"]
+size = Vector3(50, 1, 50)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_a02cp"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_go701"]
+
+[sub_resource type="Curve3D" id="Curve3D_a02cp"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 22, 0, 0, -25, 59.75, 0, 0, 6, 0, 0, 0, 0, 0, 34.416, 0, 0, 0, 0, 0, 0, 0, 0, -3),
+"tilts": PackedFloat32Array(0, 0, 0)
+}
+point_count = 3
+
+[node name="Root" type="Node3D"]
+
+[node name="Player" parent="." instance=ExtResource("1_a02cp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8804145, 0)
+movementLimits = Vector2(-2, 2)
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(-1, 4.371139e-08, -7.5710346e-08, 0, 0.8660254, 0.5, 8.742278e-08, 0.5, -0.8660254, 0, 6.745, -4.796)
+
+[node name="Lighting" type="Node3D" parent="."]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Lighting"]
+transform = Transform3D(1, 0, 0, 0, 0.8452525, 0.5343671, 0, -0.5343671, 0.8452525, 0, 13.296884, 23.258636)
+
+[node name="Floor" type="Node3D" parent="."]
+
+[node name="GroundCollision" type="StaticBody3D" parent="Floor"]
+collision_layer = 32
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/GroundCollision"]
+transform = Transform3D(1, 0, 0, 0, 0.8660254, 0.5, 0, -0.5, 0.8660254, 0, 6.4275885, 12.033555)
+shape = SubResource("BoxShape3D_a02cp")
+
+[node name="MeshParent" type="Node3D" parent="Floor"]
+transform = Transform3D(-50, 0, -4.371139e-06, 0, 50, 0, 4.371139e-06, 0, -50, 0, -25, 34.912617)
+visible = false
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor/MeshParent"]
+transform = Transform3D(-4.371139e-08, 1, -4.371139e-08, 0, -4.371139e-08, -1, -1, -4.371139e-08, 1.9106855e-15, 0, 0, 0)
+mesh = SubResource("CylinderMesh_a02cp")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Floor/MeshParent"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 1)
+mesh = SubResource("PlaneMesh_go701")
+skeleton = NodePath("../..")
+
+[node name="MovementPath" type="Path3D" parent="."]
+curve = SubResource("Curve3D_a02cp")
+
+[node name="Enemy" parent="." instance=ExtResource("2_go701")]
