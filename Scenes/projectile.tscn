@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://c5ueclcie2is4"]
+[gd_scene load_steps=5 format=3 uid="uid://c5ueclcie2is4"]
 
 [ext_resource type="Script" uid="uid://d367v2i1yc01m" path="res://Scripts/projectile.gd" id="1_f8cdk"]
+[ext_resource type="Script" uid="uid://dyks6k5kyuxju" path="res://Scripts/projectile_data.gd" id="2_yr2qt"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_f8cdk"]
 
@@ -13,10 +14,14 @@ script = ExtResource("1_f8cdk")
 speed = 15.0
 positionBounds = -80.0
 
+[node name="ProjectileData" type="Node" parent="."]
+script = ExtResource("2_yr2qt")
+damage = 5
+
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("SphereMesh_f8cdk")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("SphereShape3D_f8cdk")
 
-[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="area_entered" from="." to="ProjectileData" method="_on_projectile_area_entered"]

@@ -9,6 +9,7 @@ var pathOffset = 0;
 @onready var path = get_tree().root.get_node("Root/MovementPath") as Path3D;
 @onready var xOffset: float = randf_range(-xOffsetLimit, xOffsetLimit);
 @onready var point1Height = path.curve.get_point_position(0).y
+@onready var enemyData = $EnemyData
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -28,3 +29,6 @@ func _physics_process(delta: float) -> void:
 	
 	position = positionOnPath + horizontalOffset + verticalOffset;
 	rotation = Vector3(angle, 0, 0);
+
+func Damage(damage: int) -> void:
+	enemyData.Damage(damage)
