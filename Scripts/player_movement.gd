@@ -1,9 +1,13 @@
 extends Node3D
 
 @export_flags_2d_physics var raycastLayerMask;
-@export var movementLimits: Vector2
-var pointerPosition: float = 0
-var startPosition: Vector3
+@export var movementLimits: Vector2;
+@export var maxTilt: float;
+@export var tiltReductionSpeed: float;
+var pointerPosition: float = 0;
+var startPosition: Vector3;
+var lastPosition: Vector3;
+var tilt: float = 0;
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -16,8 +20,15 @@ func _process(delta: float) -> void:
 	pointerPosition = ScreenPointToRay().x;
 	
 	pointerPosition = clamp(pointerPosition, movementLimits.x, movementLimits.y);
+	
+	lastPosition = position;
 	position = startPosition + Vector3(pointerPosition, 0, 0);
-	pass
+	
+	var dif = lastPosition.x - position.x;
+	if abs(dif) > abs(tilt): tilt = min(dif, maxTilt);
+	else: tilt = lerp(tilt, 0.0, tiltReductionSpeed * delta);
+	
+	rotation = Vector3(0, 0, (tilt));
 
 func ScreenPointToRay() -> Vector3:
 	var spaceState = get_world_3d().direct_space_state
