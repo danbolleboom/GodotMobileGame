@@ -1,12 +1,16 @@
-[gd_scene load_steps=7 format=3 uid="uid://dnddunlw74rcw"]
+[gd_scene load_steps=9 format=3 uid="uid://dnddunlw74rcw"]
 
 [ext_resource type="PackedScene" uid="uid://bd75e2k4dd304" path="res://Scenes/player.tscn" id="1_a02cp"]
+[ext_resource type="PackedScene" uid="uid://cyslwb6wi17bd" path="res://Scenes/game_director.tscn" id="2_5a7ea"]
 [ext_resource type="PackedScene" uid="uid://b6nr0kxkm8l3k" path="res://Scenes/enemy.tscn" id="2_go701"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_a02cp"]
 size = Vector3(50, 1, 50)
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_a02cp"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5a7ea"]
+albedo_color = Color(4.5724212e-07, 0.41793022, 6.738305e-07, 1)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_go701"]
 
@@ -29,7 +33,7 @@ transform = Transform3D(-1, 4.371139e-08, -7.5710346e-08, 0, 0.8660254, 0.5, 8.7
 [node name="Lighting" type="Node3D" parent="."]
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="Lighting"]
-transform = Transform3D(1, 0, 0, 0, 0.8452525, 0.5343671, 0, -0.5343671, 0.8452525, 0, 13.296884, 23.258636)
+transform = Transform3D(-0.9999836, -0.003059011, 0.00483869, 0, 0.8452525, 0.5343671, -0.0057245498, 0.5343583, -0.8452387, 0, 13.296884, 23.258636)
 
 [node name="Floor" type="Node3D" parent="."]
 
@@ -43,20 +47,21 @@ shape = SubResource("BoxShape3D_a02cp")
 
 [node name="MeshParent" type="Node3D" parent="Floor"]
 transform = Transform3D(-50, 0, -4.371139e-06, 0, 50, 0, 4.371139e-06, 0, -50, 0, -25, 34.912617)
-visible = false
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Floor/MeshParent"]
 transform = Transform3D(-4.371139e-08, 1, -4.371139e-08, 0, -4.371139e-08, -1, -1, -4.371139e-08, 1.9106855e-15, 0, 0, 0)
 mesh = SubResource("CylinderMesh_a02cp")
 skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_5a7ea")
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="Floor/MeshParent"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 1)
 mesh = SubResource("PlaneMesh_go701")
 skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_5a7ea")
 
 [node name="MovementPath" type="Path3D" parent="."]
 curve = SubResource("Curve3D_a02cp")
 
-[node name="Enemy" parent="." instance=ExtResource("2_go701")]
-speed = 20.0
+[node name="GameDirector" parent="." instance=ExtResource("2_5a7ea")]
+enemies = Array[PackedScene]([ExtResource("2_go701")])

@@ -1,20 +1,20 @@
 extends Area3D
 
 @export var speed: float;
-@export var xOffsetLimit: int = 2;
 @export var yOffset: float;
 
-var pathOffset = 0;
 
 @onready var path = get_tree().root.get_node("Root/MovementPath") as Path3D;
-@onready var xOffset: float = randf_range(-xOffsetLimit, xOffsetLimit);
+@onready var xOffset: float;
 @onready var point1Height = path.curve.get_point_position(0).y
-@onready var enemyData = $EnemyData
+
+var xOffsetLimit: int = 2;
+var pathOffset = 0;
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
-
+	# Spawn below map so it doesn't pop in at (0, 0, 0)
+	position = Vector3(0, -10, 0);
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -22,6 +22,11 @@ func _process(delta: float) -> void:
 
 func _physics_process(delta: float) -> void:
 	pathOffset += delta * speed;
+	
+	if pathOffset > path.curve.get_baked_length():
+		queue_free();
+		return;
+	
 	var positionOnPath = path.curve.sample_baked(pathOffset);
 	var horizontalOffset = Vector3(xOffset, 0, 0);
 	var angle = deg_to_rad(abs(positionOnPath.y) / abs(point1Height) * 90);
@@ -29,6 +34,3 @@ func _physics_process(delta: float) -> void:
 	
 	position = positionOnPath + horizontalOffset + verticalOffset;
 	rotation = Vector3(angle, 0, 0);
-
-func Damage(damage: int) -> void:
-	enemyData.Damage(damage)

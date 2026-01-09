@@ -1,0 +1,35 @@
+[gd_scene load_steps=7 format=3 uid="uid://cyslwb6wi17bd"]
+
+[ext_resource type="Script" uid="uid://4ndtihsvcllg" path="res://Scripts/DirectorScripts/game_director.gd" id="1_cu1mg"]
+[ext_resource type="Script" uid="uid://bk4ulpn65l5uj" path="res://Scripts/DirectorScripts/enemy_spawn_data.gd" id="2_dvpqc"]
+[ext_resource type="PackedScene" uid="uid://bw34ccuj67uwb" path="res://Scenes/Decorations/decoration_tree.tscn" id="2_so0fb"]
+[ext_resource type="PackedScene" uid="uid://0it8tuwigt5" path="res://Scenes/Decorations/decoration_rock.tscn" id="3_66edg"]
+[ext_resource type="Script" uid="uid://dq1xc4ay08qyk" path="res://Scripts/DirectorScripts/map_data.gd" id="3_phja3"]
+[ext_resource type="Script" uid="uid://bhyayv3frg2w7" path="res://Scripts/DirectorScripts/decoration_spawn_data.gd" id="4_3vfwh"]
+
+[node name="GameDirector" type="Node"]
+script = ExtResource("1_cu1mg")
+decorations = Array[PackedScene]([ExtResource("2_so0fb"), ExtResource("3_66edg")])
+
+[node name="EnemySpawnData" type="Node" parent="."]
+script = ExtResource("2_dvpqc")
+startSpawnCooldown = 1.0
+cooldownMultiplierPerLevel = 0.95
+startEnemiesPerLevel = 15
+enemiesIncreasePerLevel = 5
+
+[node name="Enemies" type="Node" parent="."]
+
+[node name="MapData" type="Node" parent="."]
+script = ExtResource("3_phja3")
+gameWidth = 4.0
+gameBorderPadding = 2.0
+decorationAreaWidth = 30.0
+
+[node name="DecorationSpawnData" type="Node" parent="."]
+script = ExtResource("4_3vfwh")
+spawnCooldown = 0.25
+decorationsPerSpawn = Vector2(4, 10)
+pathOffsetRange = 1.0
+
+[node name="Decorations" type="Node" parent="."]

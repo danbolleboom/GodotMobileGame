@@ -1,9 +1,9 @@
 extends Area3D
 
-@export var speed: float;
 @export var positionBounds: float;
 
-@onready var projectileData = $ProjectileData
+@onready var projectileData = $ProjectileData;
+@onready var speed = projectileData.speed;
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
