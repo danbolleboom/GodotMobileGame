@@ -1,13 +1,22 @@
-[gd_scene load_steps=3 format=3 uid="uid://bw34ccuj67uwb"]
+[gd_scene load_steps=4 format=3 uid="uid://bw34ccuj67uwb"]
 
 [ext_resource type="PackedScene" uid="uid://p5d6b0d2m6uc" path="res://Scenes/path_entity.tscn" id="1_ovcqc"]
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_ovcqc"]
 
+[sub_resource type="BoxMesh" id="BoxMesh_ovcqc"]
+
 [node name="DecorationTree" instance=ExtResource("1_ovcqc")]
-speed = 10.0
 yOffset = 2.0
 
 [node name="MeshInstance3D" parent="." index="0"]
 transform = Transform3D(1, 0, 0, 0, 4, 0, 0, 0, 1, 0, 0, 0)
 mesh = SubResource("CylinderMesh_ovcqc")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="." index="2"]
+transform = Transform3D(4, 0, 0, 0, 1, 0, 0, 0, 4, 0, 2.7073197, 0)
+mesh = SubResource("BoxMesh_ovcqc")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="." index="3"]
+transform = Transform3D(3, 0, 0, 0, 1, 0, 0, 0, 3, 0, 3.638761, 0)
+mesh = SubResource("BoxMesh_ovcqc")
