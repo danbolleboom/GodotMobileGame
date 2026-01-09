@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://jwwee3w0m3dw"]
+
+[ext_resource type="PackedScene" uid="uid://3jgh1pxy2fs6" path="res://Scenes/OneShotEffects/one_shot_base.tscn" id="1_pw6t6"]
+
+[node name="OneShotEffect" instance=ExtResource("1_pw6t6")]

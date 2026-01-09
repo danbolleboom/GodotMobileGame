@@ -1,0 +1,45 @@
+[gd_scene load_steps=7 format=3 uid="uid://3jgh1pxy2fs6"]
+
+[ext_resource type="PackedScene" uid="uid://p5d6b0d2m6uc" path="res://Scenes/path_entity.tscn" id="1_k0t5f"]
+[ext_resource type="Script" uid="uid://ffkkcrw6nayh" path="res://particle_oneshot.gd" id="2_jeh8d"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ahf8q"]
+vertex_color_use_as_albedo = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_lo8sj"]
+material = SubResource("StandardMaterial3D_ahf8q")
+
+[sub_resource type="Curve" id="Curve_0muua"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.4825582, 0.17977536), -0.83571225, -0.83571225, 0, 0, Vector2(0.88372105, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Gradient" id="Gradient_ahf8q"]
+offsets = PackedFloat32Array(0, 0.369863, 0.65068495)
+colors = PackedColorArray(1, 1, 0, 1, 1, 0, 0, 1, 0.27387273, 0.27387273, 0.27387273, 1)
+
+[node name="OneShotEffect" instance=ExtResource("1_k0t5f")]
+
+[node name="MeshInstance3D" parent="." index="0"]
+visible = false
+mesh = null
+
+[node name="CollisionShape3D" parent="." index="1"]
+visible = false
+
+[node name="Particles" type="CPUParticles3D" parent="." index="2"]
+emitting = false
+amount = 50
+lifetime = 0.5
+one_shot = true
+explosiveness = 1.0
+local_coords = true
+mesh = SubResource("BoxMesh_lo8sj")
+direction = Vector3(0, 1, 0)
+spread = 20.88
+initial_velocity_min = 2.0
+initial_velocity_max = 7.0
+scale_amount_min = 0.0
+scale_amount_max = 0.2
+scale_amount_curve = SubResource("Curve_0muua")
+color_ramp = SubResource("Gradient_ahf8q")
+script = ExtResource("2_jeh8d")

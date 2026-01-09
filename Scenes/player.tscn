@@ -17,7 +17,6 @@ mesh = SubResource("PrismMesh_v0iea")
 
 [node name="AttackController" type="Node3D" parent="."]
 script = ExtResource("2_cvnsp")
-startCooldown = 1.0
 projectileScene = ExtResource("3_6t5aa")
 
 [node name="AttackSource" type="Node3D" parent="AttackController"]

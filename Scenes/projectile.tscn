@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://c5ueclcie2is4"]
+[gd_scene load_steps=7 format=3 uid="uid://c5ueclcie2is4"]
 
 [ext_resource type="Script" uid="uid://d367v2i1yc01m" path="res://Scripts/projectile.gd" id="1_f8cdk"]
 [ext_resource type="Script" uid="uid://dyks6k5kyuxju" path="res://Scripts/projectile_data.gd" id="2_yr2qt"]
+[ext_resource type="PackedScene" uid="uid://b3w6gehfdtdjy" path="res://Scenes/OneShotEffects/os_projectile_hit.tscn" id="3_d4467"]
 [ext_resource type="Material" uid="uid://bwf07m2sgvlqi" path="res://Materials/bullet_material.tres" id="3_tl4hk"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_f8cdk"]
@@ -20,6 +21,7 @@ script = ExtResource("2_yr2qt")
 damage = 5
 pierce = 3
 speed = 15.0
+enemyDamageParticles = ExtResource("3_d4467")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("SphereMesh_f8cdk")

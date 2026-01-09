@@ -1,14 +1,14 @@
-[gd_scene load_steps=5 format=3 uid="uid://b6nr0kxkm8l3k"]
+[gd_scene load_steps=6 format=3 uid="uid://b6nr0kxkm8l3k"]
 
 [ext_resource type="PackedScene" uid="uid://p5d6b0d2m6uc" path="res://Scenes/path_entity.tscn" id="1_hghv2"]
 [ext_resource type="Script" uid="uid://cil43cfb7o2r5" path="res://Scripts/enemy_data.gd" id="2_1f0kj"]
 [ext_resource type="Material" uid="uid://do8xb3721d3iv" path="res://Materials/enemy_material.tres" id="2_afpow"]
+[ext_resource type="PackedScene" uid="uid://jwwee3w0m3dw" path="res://Scenes/OneShotEffects/os_enemy_death.tscn" id="4_287tu"]
 
 [sub_resource type="PrismMesh" id="PrismMesh_1f0kj"]
 
 [node name="Enemy" instance=ExtResource("1_hghv2")]
 collision_mask = 2
-extraSpeed = -5.0
 yOffset = 1.0
 
 [node name="MeshInstance3D" parent="." index="0"]
@@ -18,3 +18,4 @@ surface_material_override/0 = ExtResource("2_afpow")
 [node name="EnemyData" type="Node" parent="." index="2"]
 script = ExtResource("2_1f0kj")
 maxHealth = 10.0
+deathParticles = ExtResource("4_287tu")
