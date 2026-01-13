@@ -7,10 +7,11 @@ var attackTimer: float = 0;
 @onready var projectileLoaded = load(projectileScene.resource_path)
 
 @onready var attackSource = $AttackSource;
+@onready var projectileParent = get_tree().root.get_node("World/ProjectileParent");
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	pass
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -24,5 +25,5 @@ func _process(delta: float) -> void:
 func Attack() -> void:
 	var newProjectile = projectileLoaded.instantiate();
 	newProjectile.position = attackSource.global_position;
-	get_tree().root.add_child(newProjectile);
+	projectileParent.add_child(newProjectile);
 	pass

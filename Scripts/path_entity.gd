@@ -3,7 +3,7 @@ extends Area3D
 @export var extraSpeed: float;
 @export var yOffset: float;
 
-@onready var path = get_tree().root.get_node("Root/MovementPath") as Path3D;
+@onready var path = get_tree().root.get_node("World/MovementPath") as Path3D;
 @onready var xOffset: float;
 @onready var point1Height = path.curve.get_point_position(0).y
 @onready var speed = global_values.baseSpeed + extraSpeed;

@@ -2,8 +2,11 @@ extends Node
 
 @export var maxHealth: float;
 @export var deathParticles: PackedScene;
+@export var contactDamage: float;
 
 @onready var currentHealth: float = maxHealth;
+
+var hitPlayer: bool = false;
 
 func Die() -> void:
 	# Death fx
@@ -12,10 +15,18 @@ func Die() -> void:
 	particles.position = get_parent().position;
 	particles.get_node("Particles").emitting = true;
 	
+	global_values.enemyDeadCallback.call(1);
+	
 	get_parent().queue_free()
 
-func Damage(damage: int) -> void:
-	currentHealth -= damage
+func Damage(_damage: int) -> void:
+	currentHealth -= _damage
 	
 	if currentHealth <= 0:
 		Die()
+
+
+func _on_enemy_area_entered(area: Area3D) -> void:
+	if !hitPlayer && area.has_node("PlayerData"):
+		area.get_node("PlayerData").Damage(contactDamage);
+		hitPlayer = true;

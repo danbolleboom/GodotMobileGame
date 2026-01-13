@@ -2,6 +2,9 @@ extends Node
 
 @export var enemies: Array[PackedScene]
 @export var decorations: Array[PackedScene]
+@export var gameUI: Node;
+
+@export var test: Dictionary = { "key": "value" }
 
 @onready var enemySpawnData = $EnemySpawnData;
 @onready var enemiesParent = $Enemies;
@@ -17,8 +20,16 @@ var decorationSpawnTimer: float = 0;
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	global_values.enemyDeadCallback = Callable(self, "EnemyDied");
 
+func EnemyDied(_cost: int) -> void:
+		spawnsThisLevel += _cost;
+		
+		if spawnsThisLevel >= enemySpawnData.enemiesPerLevel:
+			spawnsThisLevel -= enemySpawnData.enemiesPerLevel;
+			level += 1;
+			enemySpawnData.UpdateData(level);
+			gameUI.UpdateLevel(level);
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -29,11 +40,6 @@ func _process(delta: float) -> void:
 		var newEnemy = enemies[0].instantiate();
 		newEnemy.xOffset = randf_range(-mapData.gameWidth / 2, mapData.gameWidth / 2);
 		enemiesParent.add_child(newEnemy);
-		spawnsThisLevel += 1;
-		
-		if spawnsThisLevel >= enemySpawnData.enemiesPerLevel:
-			level += 1;
-			enemySpawnData.UpdateData(level);
 		
 		spawnTimer -= enemySpawnData.spawnCooldown;
 	
