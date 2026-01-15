@@ -6,7 +6,7 @@ extends Area3D
 @onready var path = get_tree().root.get_node("World/MovementPath") as Path3D;
 @onready var xOffset: float;
 @onready var point1Height = path.curve.get_point_position(0).y
-@onready var speed = global_values.baseSpeed + extraSpeed;
+@onready var speed = Constants.baseSpeed + extraSpeed;
 
 var xOffsetLimit: int = 2;
 var pathOffset = 0;
@@ -21,7 +21,7 @@ func _process(delta: float) -> void:
 	pass
 
 func _physics_process(delta: float) -> void:
-	pathOffset += delta * speed;
+	pathOffset += delta * (Constants.currentSpeed + extraSpeed);
 	
 	if pathOffset > path.curve.get_baked_length():
 		queue_free();

@@ -18,4 +18,14 @@ func Damage(_damage: int) -> void:
 		Die();
 
 func Die() -> void:
-	get_tree().reload_current_scene();
+	Constants.gameDirector.EndGame();
+	Constants.uiManager.PlayerDie();
+	get_parent().queue_free();
+
+
+func _on_player_area_entered(area: Area3D) -> void:
+	if area.has_node("EnemyData"):
+		Damage(area.get_node("EnemyData").contactDamage);
+	else:
+		# Todo: powerups/pickups
+		pass

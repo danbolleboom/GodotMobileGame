@@ -1,9 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://dnddunlw74rcw"]
+[gd_scene load_steps=9 format=3 uid="uid://dnddunlw74rcw"]
 
-[ext_resource type="PackedScene" uid="uid://bd75e2k4dd304" path="res://Scenes/player.tscn" id="1_a02cp"]
 [ext_resource type="PackedScene" uid="uid://cyslwb6wi17bd" path="res://Scenes/game_director.tscn" id="2_5a7ea"]
 [ext_resource type="PackedScene" uid="uid://b6nr0kxkm8l3k" path="res://Scenes/enemy.tscn" id="2_go701"]
-[ext_resource type="PackedScene" uid="uid://xx58mptroggy" path="res://Scenes/UI/game_ui.tscn" id="4_8j60k"]
+[ext_resource type="PackedScene" uid="uid://cn4bf5orw4u3" path="res://Scenes/UI/ui_manager.tscn" id="5_fo5ed"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_a02cp"]
 size = Vector3(50, 1, 50)
@@ -23,10 +22,6 @@ _data = {
 point_count = 3
 
 [node name="World" type="Node3D"]
-
-[node name="Player" parent="." instance=ExtResource("1_a02cp")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8804145, 0)
-movementLimits = Vector2(-2, 2)
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(-1, 4.371139e-08, -7.5710346e-08, 0, 0.8660254, 0.5, 8.742278e-08, 0.5, -0.8660254, 0, 6.745, -4.796)
@@ -64,10 +59,9 @@ surface_material_override/0 = SubResource("StandardMaterial3D_5a7ea")
 [node name="MovementPath" type="Path3D" parent="."]
 curve = SubResource("Curve3D_a02cp")
 
-[node name="GameDirector" parent="." node_paths=PackedStringArray("gameUI") instance=ExtResource("2_5a7ea")]
+[node name="GameDirector" parent="." instance=ExtResource("2_5a7ea")]
 enemies = Array[PackedScene]([ExtResource("2_go701")])
-gameUI = NodePath("../GameUI")
-
-[node name="GameUI" parent="." instance=ExtResource("4_8j60k")]
 
 [node name="ProjectileParent" type="Node" parent="."]
+
+[node name="UiManager" parent="." instance=ExtResource("5_fo5ed")]

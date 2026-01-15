@@ -15,7 +15,7 @@ func Die() -> void:
 	particles.position = get_parent().position;
 	particles.get_node("Particles").emitting = true;
 	
-	global_values.enemyDeadCallback.call(1);
+	Constants.enemyDeadCallback.call(1);
 	
 	get_parent().queue_free()
 

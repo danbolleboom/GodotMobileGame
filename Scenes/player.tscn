@@ -13,8 +13,10 @@
 collision_mask = 12
 script = ExtResource("1_v0iea")
 raycastLayerMask = 32
+movementLimits = Vector2(-2, 2)
 maxTilt = 30.0
 tiltReductionSpeed = 10.0
+startPosition = Vector3(0, 1, 0)
 
 [node name="Mesh" type="MeshInstance3D" parent="."]
 mesh = SubResource("PrismMesh_v0iea")
@@ -32,3 +34,5 @@ maxHealth = 100
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("SphereShape3D_vgqql")
+
+[connection signal="area_entered" from="." to="PlayerData" method="_on_player_area_entered"]

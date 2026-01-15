@@ -1,0 +1,108 @@
+[gd_scene load_steps=3 format=3 uid="uid://cn4bf5orw4u3"]
+
+[ext_resource type="Script" uid="uid://ck70o60e7cvpw" path="res://Scripts/UI/ui_manager.gd" id="1_x5yhv"]
+[ext_resource type="Script" uid="uid://bce6bd5bd3xmj" path="res://Scripts/UI/game_ui.gd" id="2_huwks"]
+
+[node name="UiManager" type="Node"]
+script = ExtResource("1_x5yhv")
+
+[node name="GameUI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_huwks")
+
+[node name="TopUI" type="Node2D" parent="GameUI"]
+position = Vector2(0, 32)
+
+[node name="LevelText" type="Label" parent="GameUI/TopUI"]
+offset_left = 25.0
+offset_top = 25.0
+offset_right = 83.0
+offset_bottom = 48.0
+text = "Level: 1"
+metadata/_edit_use_anchors_ = true
+
+[node name="ProgressBar" type="ProgressBar" parent="GameUI"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.02
+anchor_top = 0.01
+anchor_right = 0.98
+anchor_bottom = 0.033
+offset_bottom = -9.118
+show_percentage = false
+
+[node name="MainMenu" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Buttons" type="VBoxContainer" parent="MainMenu"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -66.5
+offset_right = 100.0
+offset_bottom = 66.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 20
+
+[node name="Play" type="Button" parent="MainMenu/Buttons"]
+layout_mode = 2
+text = "Play"
+
+[node name="Settings" type="Button" parent="MainMenu/Buttons"]
+layout_mode = 2
+text = "Settings"
+
+[node name="Quit" type="Button" parent="MainMenu/Buttons"]
+layout_mode = 2
+text = "Quit"
+
+[node name="GameOver" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Buttons" type="VBoxContainer" parent="GameOver"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -66.5
+offset_right = 100.0
+offset_bottom = 66.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 20
+
+[node name="Retry" type="Button" parent="GameOver/Buttons"]
+layout_mode = 2
+text = "Retry"
+
+[node name="ToMenu" type="Button" parent="GameOver/Buttons"]
+layout_mode = 2
+text = "Return To Menu"
+
+[connection signal="button_up" from="MainMenu/Buttons/Play" to="." method="_on_play_button_up"]
+[connection signal="button_up" from="GameOver/Buttons/Retry" to="." method="_on_retry_button_up"]
+[connection signal="button_up" from="GameOver/Buttons/ToMenu" to="." method="_on_to_menu_button_up"]

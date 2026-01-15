@@ -4,14 +4,14 @@ extends Node3D
 @export var movementLimits: Vector2;
 @export var maxTilt: float;
 @export var tiltReductionSpeed: float;
+@export var startPosition: Vector3;
 var pointerPosition: float = 0;
-var startPosition: Vector3;
 var lastPosition: Vector3;
 var tilt: float = 0;
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	startPosition = position;
+	position = startPosition;
 	pass # Replace with function body.
 
 
