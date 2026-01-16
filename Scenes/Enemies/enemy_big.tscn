@@ -1,11 +1,16 @@
-[gd_scene load_steps=2 format=3 uid="uid://b4mdaobiaclu1"]
+[gd_scene load_steps=3 format=3 uid="uid://b4mdaobiaclu1"]
 
 [ext_resource type="PackedScene" uid="uid://b6nr0kxkm8l3k" path="res://Scenes/Enemies/enemy_base.tscn" id="1_vpaip"]
+[ext_resource type="PackedScene" uid="uid://cmi7kgeiqll8v" path="res://Scenes/Enemies/Behaviours/enemy_attack.tscn" id="2_btbvo"]
 
 [node name="EnemyBig" instance=ExtResource("1_vpaip")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
-extraSpeed = -5.0
+speedMultiplier = 0.7
 
 [node name="EnemyData" parent="." index="2"]
-maxHealth = 30.0
-worth = 2
+maxHealth = 20.0
+contactDamage = 35.0
+worth = 3
+
+[node name="EnemyAttack" parent="." index="3" instance=ExtResource("2_btbvo")]
+cooldown = 4.1

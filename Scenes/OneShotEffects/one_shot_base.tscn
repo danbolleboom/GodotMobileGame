@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://3jgh1pxy2fs6"]
 
 [ext_resource type="PackedScene" uid="uid://p5d6b0d2m6uc" path="res://Scenes/path_entity.tscn" id="1_k0t5f"]
-[ext_resource type="Script" uid="uid://ffkkcrw6nayh" path="res://particle_oneshot.gd" id="2_jeh8d"]
+[ext_resource type="Script" uid="uid://ffkkcrw6nayh" path="res://Scripts/particle_oneshot.gd" id="2_jeh8d"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ahf8q"]
 vertex_color_use_as_albedo = true

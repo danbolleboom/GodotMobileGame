@@ -1,0 +1,5 @@
+extends CPUParticles3D
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	if !emitting: get_parent().queue_free();

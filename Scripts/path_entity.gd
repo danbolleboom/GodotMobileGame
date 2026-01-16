@@ -1,27 +1,26 @@
 extends Area3D
 
-@export var extraSpeed: float;
+@export var speedMultiplier: float;
 @export var yOffset: float;
 
 @onready var path = get_tree().root.get_node("World/MovementPath") as Path3D;
 @onready var xOffset: float;
 @onready var point1Height = path.curve.get_point_position(0).y
-@onready var speed = Constants.baseSpeed + extraSpeed;
 
 var xOffsetLimit: int = 2;
 var pathOffset = 0;
 
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	# Spawn below map so it doesn't pop in at (0, 0, 0)
 	position = Vector3(0, -10, 0);
+	if has_node("EnemyProjectileData"):
+		print("hi")
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
 
 func _physics_process(delta: float) -> void:
-	pathOffset += delta * (Constants.currentSpeed + extraSpeed);
+	pathOffset += delta * (Constants.currentSpeed * speedMultiplier);
 	
 	if pathOffset > path.curve.get_baked_length():
 		queue_free();
@@ -34,3 +33,8 @@ func _physics_process(delta: float) -> void:
 	
 	position = positionOnPath + horizontalOffset + verticalOffset;
 	rotation = Vector3(angle, 0, 0);
+
+func UpdatePathFollowData(_parent: Node3D) -> void:
+	pathOffset = _parent.pathOffset;
+	yOffset = _parent.yOffset;
+	xOffset = _parent.xOffset;

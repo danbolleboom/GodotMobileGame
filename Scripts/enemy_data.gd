@@ -24,3 +24,8 @@ func Damage(_damage: int) -> void:
 	
 	if currentHealth <= 0:
 		Die()
+
+
+func _on_enemy_area_entered(area: Area3D) -> void:
+	if area.has_node("PlayerData"):
+		area.get_node("PlayerData").Damage(contactDamage);

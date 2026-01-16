@@ -3,18 +3,29 @@ extends Node
 @export var damage: int
 @export var pierce: int
 @export var speed: float
+@export var spread: float;
 
 @export var enemyDamageParticles: PackedScene;
+
+func _ready() -> void:
+	get_parent().direction = Vector3(randf_range(-spread, spread), 0, 1).normalized();
 
 func _on_projectile_area_entered(area: Area3D) -> void:
 	if area.has_node("EnemyData"):
 		area.get_node("EnemyData").Damage(damage);
 		
-		var particles = enemyDamageParticles.instantiate();
-		particles.get_node("Particles").UpdatePathFollowData(area);
-		particles.get_node("Particles").emitting = true;
+		var particlesObject = enemyDamageParticles.instantiate();
+		var particles = particlesObject.get_node("Particles");
+		particlesObject.UpdatePathFollowData(area);
+		particles.emitting = true;
+		particlesObject.xOffset = get_parent().position.x;
+		particlesObject.speedMultiplier = area.speedMultiplier;
 		
-		get_tree().root.add_child(particles);
+		get_tree().root.add_child(particlesObject);
+	
+	if (area.has_node("EnemyProjectileData")):
+		area.get_node("EnemyProjectileData").Damage(damage);
+		
 	
 	pierce -= 1;
 	if pierce <= 0:

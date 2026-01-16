@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://cmi7kgeiqll8v"]
+
+[ext_resource type="Script" uid="uid://cnrsedqku7764" path="res://Scripts/EnemyBehaviours/enemy_attack.gd" id="1_xnix2"]
+[ext_resource type="PackedScene" uid="uid://b102h004mnqrl" path="res://Scenes/Enemies/Behaviours/enemy_big_projectile.tscn" id="2_mb4q4"]
+
+[node name="EnemyAttack" type="Node3D"]
+script = ExtResource("1_xnix2")
+cooldown = 1.0
+projectileScene = ExtResource("2_mb4q4")
