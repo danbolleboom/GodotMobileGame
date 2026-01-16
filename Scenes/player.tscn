@@ -16,13 +16,14 @@ raycastLayerMask = 32
 movementLimits = Vector2(-2, 2)
 maxTilt = 30.0
 tiltReductionSpeed = 10.0
-startPosition = Vector3(0, 1, 0)
+startPosition = Vector3(0, 1, -10)
 
 [node name="Mesh" type="MeshInstance3D" parent="."]
 mesh = SubResource("PrismMesh_v0iea")
 
 [node name="AttackController" type="Node3D" parent="."]
 script = ExtResource("2_cvnsp")
+startCooldown = 0.4
 projectileScene = ExtResource("3_6t5aa")
 
 [node name="AttackSource" type="Node3D" parent="AttackController"]

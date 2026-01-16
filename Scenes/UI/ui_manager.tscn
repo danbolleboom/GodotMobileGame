@@ -1,7 +1,19 @@
-[gd_scene load_steps=3 format=3 uid="uid://cn4bf5orw4u3"]
+[gd_scene load_steps=7 format=3 uid="uid://cn4bf5orw4u3"]
 
 [ext_resource type="Script" uid="uid://ck70o60e7cvpw" path="res://Scripts/UI/ui_manager.gd" id="1_x5yhv"]
 [ext_resource type="Script" uid="uid://bce6bd5bd3xmj" path="res://Scripts/UI/game_ui.gd" id="2_huwks"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_huwks"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1bij0"]
+bg_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_88ycu"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_04kky"]
+bg_color = Color(0, 1, 0, 1)
 
 [node name="UiManager" type="Node"]
 script = ExtResource("1_x5yhv")
@@ -34,6 +46,22 @@ anchor_top = 0.01
 anchor_right = 0.98
 anchor_bottom = 0.033
 offset_bottom = -9.118
+theme_override_styles/background = SubResource("StyleBoxFlat_huwks")
+theme_override_styles/fill = SubResource("StyleBoxFlat_1bij0")
+show_percentage = false
+
+[node name="HealthBar" type="ProgressBar" parent="GameUI"]
+modulate = Color(0, 1, 0, 1)
+self_modulate = Color(0, 1, 0, 1)
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.1
+anchor_right = 0.05
+anchor_bottom = 0.2
+offset_left = 20.0
+theme_override_styles/background = SubResource("StyleBoxFlat_88ycu")
+theme_override_styles/fill = SubResource("StyleBoxFlat_04kky")
+fill_mode = 3
 show_percentage = false
 
 [node name="MainMenu" type="Control" parent="."]

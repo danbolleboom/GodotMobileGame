@@ -5,24 +5,33 @@ extends Node3D
 @export var maxTilt: float;
 @export var tiltReductionSpeed: float;
 @export var startPosition: Vector3;
+@export var entranceSpeed: float = 5.0;
+@export var targetZ: float = -1.0;
 var pointerPosition: float = 0;
 var lastPosition: Vector3;
 var tilt: float = 0;
 
+@onready var playerData: Node = $PlayerData;
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	position = startPosition;
-	pass # Replace with function body.
+	Constants.player = self;
 
+func GetHealthRatio() -> float:
+	return playerData.currentHealth as float / playerData.maxHealth;
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	# Lerp to z == 0
+	position.z = lerp(position.z, targetZ, entranceSpeed * delta);
+	
 	pointerPosition = ScreenPointToRay().x;
 	
 	pointerPosition = clamp(pointerPosition, movementLimits.x, movementLimits.y);
 	
 	lastPosition = position;
-	position = startPosition + Vector3(pointerPosition, 0, 0);
+	position = Vector3(pointerPosition, startPosition.y, position.z);
 	
 	var dif = lastPosition.x - position.x;
 	if abs(dif) > abs(tilt): tilt = min(dif, maxTilt);

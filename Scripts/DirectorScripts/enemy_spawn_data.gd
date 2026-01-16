@@ -11,3 +11,6 @@ extends Node
 func UpdateData(_level: int) -> void:
 	spawnCooldown = startSpawnCooldown * pow(cooldownMultiplierPerLevel, _level);
 	enemiesPerLevel = startEnemiesPerLevel + (enemiesIncreasePerLevel * _level)
+
+func LoadEnemies() -> void:
+	pass

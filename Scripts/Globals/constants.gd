@@ -8,3 +8,4 @@ var gameStateChangedCallback: Callable;
 var gameActive: bool = false;
 var gameDirector: Node;
 var uiManager: Node;
+var player: Node;

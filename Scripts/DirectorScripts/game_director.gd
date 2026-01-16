@@ -24,6 +24,20 @@ var decorationSpawnTimer: float = 0;
 func _ready() -> void:
 	Constants.enemyDeadCallback = Callable(self, "EnemyDied");
 	Constants.gameDirector = self;
+	
+	# Load enemies
+	var path = "Scenes/Enemies"
+	var dir = DirAccess.open(path)
+	if dir:
+		dir.list_dir_begin();
+		var fileName = dir.get_next();
+		while fileName != "":
+			if !dir.current_is_dir():
+				if fileName.get_extension() == "tscn":
+					var fullPath = path.path_join(fileName);
+					enemies.append(load(fullPath))
+			fileName = dir.get_next();
+
 
 func EnemyDied(_cost: int) -> void:
 		spawnsThisLevel += _cost;
@@ -41,11 +55,16 @@ func StartGame() -> void:
 	spawnsThisLevel = 0;
 	level = 1;
 	spawnTimer = 0;
+	enemySpawnData.UpdateData(level);
+	
 	Constants.uiManager.game.SetLevelProgress(0);
 	
 	# Remove old enemies
 	for enemy in enemiesParent.get_children():
 		enemy.queue_free()
+	
+	for projectile in get_tree().root.get_node("World/ProjectileParent").get_children():
+		projectile.queue_free();
 	
 
 func EndGame() -> void:
@@ -60,7 +79,7 @@ func _process(delta: float) -> void:
 	decorationSpawnTimer += delta * (Constants.currentSpeed / Constants.baseSpeed);
 	
 	if decorationSpawnTimer > decorationSpawnData.spawnCooldown:
-		for i in randi_range(decorationSpawnData.decorationsPerSpawn.x, decorationSpawnData.decorationsPerSpawn.x):
+		for i in randi_range(decorationSpawnData.decorationsPerSpawn.x, decorationSpawnData.decorationsPerSpawn.y):
 			var newDecoration = decorations[randi_range(0, decorations.size() - 1)].instantiate();
 			var spawnOffset = randf_range((mapData.gameWidth / 2) + mapData.gameBorderPadding, mapData.decorationAreaWidth / 2 - mapData.gameBorderPadding);
 			if randi_range(0, 1) == 1:
@@ -79,7 +98,7 @@ func _process(delta: float) -> void:
 	spawnTimer += delta;
 	
 	if spawnTimer >= enemySpawnData.spawnCooldown:
-		var newEnemy = enemies[0].instantiate();
+		var newEnemy = enemies[randi_range(0, enemies.size() - 1)].instantiate();
 		newEnemy.xOffset = randf_range(-mapData.gameWidth / 2, mapData.gameWidth / 2);
 		enemiesParent.add_child(newEnemy);
 		

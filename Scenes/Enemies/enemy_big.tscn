@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://b4mdaobiaclu1"]
+
+[ext_resource type="PackedScene" uid="uid://b6nr0kxkm8l3k" path="res://Scenes/Enemies/enemy_base.tscn" id="1_vpaip"]
+
+[node name="EnemyBig" instance=ExtResource("1_vpaip")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+extraSpeed = -5.0
+
+[node name="EnemyData" parent="." index="2"]
+maxHealth = 30.0
+worth = 2

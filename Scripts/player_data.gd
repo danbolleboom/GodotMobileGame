@@ -5,7 +5,7 @@ extends Node
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	Constants.uiManager.game.healthValue = currentHealth;
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -15,7 +15,10 @@ func _process(delta: float) -> void:
 func Damage(_damage: int) -> void:
 	currentHealth -= _damage;
 	if currentHealth <= 0:
+		Constants.uiManager.game.healthValue = 0;
 		Die();
+	else:
+		Constants.uiManager.game.healthValue = currentHealth;
 
 func Die() -> void:
 	Constants.gameDirector.EndGame();
