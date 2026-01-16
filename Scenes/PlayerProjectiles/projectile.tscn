@@ -21,6 +21,7 @@ script = ExtResource("2_yr2qt")
 damage = 5
 pierce = 1
 speed = 15.0
+spread = 0.03
 enemyDamageParticles = ExtResource("3_d4467")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]

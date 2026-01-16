@@ -1,7 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://cn4bf5orw4u3"]
+[gd_scene load_steps=10 format=3 uid="uid://cn4bf5orw4u3"]
 
 [ext_resource type="Script" uid="uid://ck70o60e7cvpw" path="res://Scripts/UI/ui_manager.gd" id="1_x5yhv"]
 [ext_resource type="Script" uid="uid://bce6bd5bd3xmj" path="res://Scripts/UI/game_ui.gd" id="2_huwks"]
+[ext_resource type="Script" uid="uid://du7qimrr3ndp2" path="res://Scripts/UI/attack_select_ui.gd" id="3_1bij0"]
+[ext_resource type="PackedScene" uid="uid://02yu3ceg1413" path="res://Scenes/UI/attack_button.tscn" id="4_88ycu"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_huwks"]
 bg_color = Color(0, 0, 0, 1)
@@ -15,10 +17,14 @@ bg_color = Color(0, 0, 0, 1)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_04kky"]
 bg_color = Color(0, 1, 0, 1)
 
+[sub_resource type="LabelSettings" id="LabelSettings_1bij0"]
+font_size = 48
+
 [node name="UiManager" type="Node"]
 script = ExtResource("1_x5yhv")
 
 [node name="GameUI" type="Control" parent="."]
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -65,6 +71,7 @@ fill_mode = 3
 show_percentage = false
 
 [node name="MainMenu" type="Control" parent="."]
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -131,6 +138,61 @@ text = "Retry"
 layout_mode = 2
 text = "Return To Menu"
 
+[node name="ScoreText" type="Label" parent="GameOver"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -48.5
+offset_top = 150.0
+offset_right = 48.5
+offset_bottom = 173.00005
+grow_horizontal = 2
+text = "Score: 69420"
+label_settings = SubResource("LabelSettings_1bij0")
+
+[node name="AttackSelectUI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("3_1bij0")
+attackButtonTscn = ExtResource("4_88ycu")
+
+[node name="StartButton" type="Button" parent="AttackSelectUI"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -89.630005
+offset_right = 32.0
+offset_bottom = -58.629997
+grow_horizontal = 2
+grow_vertical = 0
+text = "Begin
+"
+
+[node name="Attacks" type="BoxContainer" parent="AttackSelectUI"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -208.0
+offset_top = -81.5
+offset_right = 208.0
+offset_bottom = 81.5
+grow_horizontal = 2
+grow_vertical = 2
+
 [connection signal="button_up" from="MainMenu/Buttons/Play" to="." method="_on_play_button_up"]
+[connection signal="button_up" from="MainMenu/Buttons/Quit" to="." method="_on_quit_button_up"]
 [connection signal="button_up" from="GameOver/Buttons/Retry" to="." method="_on_retry_button_up"]
 [connection signal="button_up" from="GameOver/Buttons/ToMenu" to="." method="_on_to_menu_button_up"]
+[connection signal="button_up" from="AttackSelectUI/StartButton" to="." method="_on_start_button_button_up"]

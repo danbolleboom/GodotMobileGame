@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://b1uq22gqmefgi"]
+
+[ext_resource type="PackedScene" uid="uid://c5ueclcie2is4" path="res://Scenes/PlayerProjectiles/projectile.tscn" id="1_wvkhb"]
+
+[node name="ProjectileSaw" instance=ExtResource("1_wvkhb")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+
+[node name="ProjectileData" parent="." index="0"]
+damage = 8
+pierce = 5
+speed = 10.0

@@ -17,6 +17,7 @@ var tilt: float = 0;
 func _ready() -> void:
 	position = startPosition;
 	Constants.player = self;
+	add_child(Constants.selectedAttack.instantiate());
 
 func GetHealthRatio() -> float:
 	return playerData.currentHealth as float / playerData.maxHealth;

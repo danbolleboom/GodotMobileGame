@@ -6,7 +6,6 @@ var attackTimer: float = 0;
 
 @onready var projectileLoaded = load(projectileScene.resource_path)
 
-@onready var attackSource = $AttackSource;
 @onready var projectileParent = get_tree().root.get_node("World/ProjectileParent");
 
 # Called when the node enters the scene tree for the first time.
@@ -24,6 +23,6 @@ func _process(delta: float) -> void:
 
 func Attack() -> void:
 	var newProjectile = projectileLoaded.instantiate();
-	newProjectile.position = attackSource.global_position;
+	newProjectile.position = global_position;
 	projectileParent.add_child(newProjectile);
 	pass

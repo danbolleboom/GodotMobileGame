@@ -1,10 +1,7 @@
 extends Node
 
 @export var playerScene: PackedScene;
-@export var enemies: Array[PackedScene]
 @export var decorations: Array[PackedScene]
-
-@export var test: Dictionary = { "key": "value" }
 
 @onready var enemySpawnData = $EnemySpawnData;
 @onready var enemiesParent = $Enemies;
@@ -14,11 +11,15 @@ extends Node
 
 @onready var player = load(playerScene.resource_path);
 
+var enemies: Array[PackedScene]
+
 var level: int = 0;
 var spawnsThisLevel: int = 0;
 var spawnTimer: float = 0;
 
 var decorationSpawnTimer: float = 0;
+
+var score: int = 0;
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -26,28 +27,18 @@ func _ready() -> void:
 	Constants.gameDirector = self;
 	
 	# Load enemies
-	var path = "Scenes/Enemies"
-	var dir = DirAccess.open(path)
-	if dir:
-		dir.list_dir_begin();
-		var fileName = dir.get_next();
-		while fileName != "":
-			if !dir.current_is_dir():
-				if fileName.get_extension() == "tscn":
-					var fullPath = path.path_join(fileName);
-					enemies.append(load(fullPath))
-			fileName = dir.get_next();
-
+	enemies = Constants.LoadScenesInFile("Scenes/Enemies")
 
 func EnemyDied(_cost: int) -> void:
-		spawnsThisLevel += _cost;
-		
-		if spawnsThisLevel >= enemySpawnData.enemiesPerLevel:
-			spawnsThisLevel -= enemySpawnData.enemiesPerLevel;
-			level += 1;
-			enemySpawnData.UpdateData(level);
-		
-		Constants.uiManager.game.SetLevelProgress(spawnsThisLevel as float / enemySpawnData.enemiesPerLevel);
+	spawnsThisLevel += _cost;
+	score += _cost;
+	
+	if spawnsThisLevel >= enemySpawnData.enemiesPerLevel:
+		spawnsThisLevel -= enemySpawnData.enemiesPerLevel;
+		level += 1;
+		enemySpawnData.UpdateData(level);
+	
+	Constants.uiManager.game.SetLevelProgress(spawnsThisLevel as float / enemySpawnData.enemiesPerLevel);
 
 func StartGame() -> void:
 	Constants.gameActive = true;
@@ -56,6 +47,7 @@ func StartGame() -> void:
 	level = 1;
 	spawnTimer = 0;
 	enemySpawnData.UpdateData(level);
+	score = 0;
 	
 	Constants.uiManager.game.SetLevelProgress(0);
 	

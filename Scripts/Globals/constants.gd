@@ -9,3 +9,20 @@ var gameActive: bool = false;
 var gameDirector: Node;
 var uiManager: Node;
 var player: Node;
+var selectedAttack: PackedScene = null;
+
+func LoadScenesInFile(path: String) -> Array[PackedScene]:
+	var array: Array[PackedScene];
+	
+	var dir = DirAccess.open(path)
+	if dir:
+		dir.list_dir_begin();
+		var fileName = dir.get_next();
+		while fileName != "":
+			if !dir.current_is_dir():
+				if fileName.get_extension() == "tscn":
+					var fullPath = path.path_join(fileName);
+					array.append(load(fullPath))
+			fileName = dir.get_next();
+	
+	return array;
