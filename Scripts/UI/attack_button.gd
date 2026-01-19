@@ -16,4 +16,5 @@ func SetAttack(_attack: PackedScene) -> void:
 
 
 func _on_button_button_up() -> void:
-	Constants.selectedAttack = attackTscn;
+	#Constants.selectedAttack = attackTscn;
+	get_parent().get_parent().StartSelection(attackTscn);

@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://bru6ypwq6100l"]
+[gd_scene load_steps=4 format=3 uid="uid://bru6ypwq6100l"]
 
 [ext_resource type="PackedScene" uid="uid://det6gdmhaeelx" path="res://Scenes/PlayerAttacks/basic_attack.tscn" id="1_ace5x"]
 [ext_resource type="PackedScene" uid="uid://b1uq22gqmefgi" path="res://Scenes/PlayerProjectiles/projectile_saw.tscn" id="2_vntjo"]
+[ext_resource type="Texture2D" uid="uid://janddwk7ro" path="res://Images/ability_Boomerang.png" id="3_0hg2k"]
 
 [node name="AttackSaw" instance=ExtResource("1_ace5x")]
 startCooldown = 1.0
@@ -10,3 +11,4 @@ projectileScene = ExtResource("2_vntjo")
 [node name="AttackData" parent="." index="0"]
 attackName = "Saw"
 attackDescription = "Shoots piercing saw blades"
+sprite = ExtResource("3_0hg2k")

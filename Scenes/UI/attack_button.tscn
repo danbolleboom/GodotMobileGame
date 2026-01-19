@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://02yu3ceg1413"]
 
 [ext_resource type="Script" uid="uid://dnye4x74jp1kp" path="res://Scripts/UI/attack_button.gd" id="1_pxwcf"]
-[ext_resource type="Texture2D" uid="uid://nq4fr5v5s2fy" path="res://icon.svg" id="2_4nyev"]
+[ext_resource type="Texture2D" uid="uid://bfftuj6dfqlve" path="res://Images/ability_Shotgun.png" id="2_4nyev"]
 
 [node name="AttackButton" type="VBoxContainer"]
 offset_right = 136.0
@@ -11,7 +11,7 @@ script = ExtResource("1_pxwcf")
 
 [node name="Button" type="Button" parent="."]
 layout_mode = 2
-size_flags_vertical = 3
+size_flags_horizontal = 4
 icon = ExtResource("2_4nyev")
 
 [node name="NameText" type="Label" parent="."]

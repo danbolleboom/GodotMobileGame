@@ -9,7 +9,9 @@ var gameActive: bool = false;
 var gameDirector: Node;
 var uiManager: Node;
 var player: Node;
-var selectedAttack: PackedScene = null;
+var selectedAttack1: PackedScene = null;
+var selectedAttack2: PackedScene = null;
+var selectedAttack3: PackedScene = null;
 
 func LoadScenesInFile(path: String) -> Array[PackedScene]:
 	var array: Array[PackedScene];
