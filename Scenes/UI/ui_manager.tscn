@@ -1,10 +1,11 @@
-[gd_scene load_steps=11 format=3 uid="uid://cn4bf5orw4u3"]
+[gd_scene load_steps=12 format=3 uid="uid://cn4bf5orw4u3"]
 
 [ext_resource type="Script" uid="uid://ck70o60e7cvpw" path="res://Scripts/UI/ui_manager.gd" id="1_x5yhv"]
 [ext_resource type="Script" uid="uid://bce6bd5bd3xmj" path="res://Scripts/UI/game_ui.gd" id="2_huwks"]
 [ext_resource type="Script" uid="uid://du7qimrr3ndp2" path="res://Scripts/UI/attack_select_ui.gd" id="3_1bij0"]
 [ext_resource type="PackedScene" uid="uid://02yu3ceg1413" path="res://Scenes/UI/attack_button.tscn" id="4_88ycu"]
 [ext_resource type="Texture2D" uid="uid://bfftuj6dfqlve" path="res://Images/ability_Shotgun.png" id="5_04kky"]
+[ext_resource type="Script" uid="uid://bux5x8425u7s0" path="res://Scripts/UI/upgrade_select_ui.gd" id="6_bwqs5"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_huwks"]
 bg_color = Color(0, 0, 0, 1)
@@ -32,6 +33,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 1
 script = ExtResource("2_huwks")
 
 [node name="TopUI" type="Node2D" parent="GameUI"]
@@ -79,6 +81,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 1
 
 [node name="Buttons" type="VBoxContainer" parent="MainMenu"]
 layout_mode = 1
@@ -115,6 +118,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 1
 
 [node name="Buttons" type="VBoxContainer" parent="GameOver"]
 layout_mode = 1
@@ -159,8 +163,9 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 script = ExtResource("3_1bij0")
-slots = [NodePath("SlotSelection/HBoxContainer/Slot1"), NodePath("SlotSelection/HBoxContainer/Slot2"), NodePath("SlotSelection/HBoxContainer/Slot3")]
+slots = [NodePath("VBoxContainer/Slot1Data/Slot1"), NodePath("VBoxContainer/Slot2Data/Slot2"), NodePath("VBoxContainer/Slot3Data/Slot3")]
 attackButtonTscn = ExtResource("4_88ycu")
 
 [node name="StartButton" type="Button" parent="AttackSelectUI"]
@@ -194,46 +199,74 @@ grow_horizontal = 2
 grow_vertical = 2
 alignment = 1
 
-[node name="SlotSelection" type="ColorRect" parent="AttackSelectUI"]
+[node name="SelectionBlocker" type="ColorRect" parent="AttackSelectUI"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 color = Color(0, 0, 0, 0.29411766)
 
-[node name="HBoxContainer" type="HBoxContainer" parent="AttackSelectUI/SlotSelection"]
+[node name="VBoxContainer" type="VBoxContainer" parent="AttackSelectUI"]
 layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
+anchors_preset = 2
 anchor_top = 1.0
-anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -20.0
-offset_top = -151.80005
-offset_right = 20.0
-offset_bottom = -111.80005
-grow_horizontal = 2
+offset_left = 20.0
+offset_top = -148.0
+offset_right = 147.99994
+offset_bottom = -20.0
 grow_vertical = 0
 
-[node name="Slot1" type="Button" parent="AttackSelectUI/SlotSelection/HBoxContainer"]
+[node name="Slot1Data" type="HBoxContainer" parent="AttackSelectUI/VBoxContainer"]
+layout_mode = 2
+
+[node name="Slot1" type="Button" parent="AttackSelectUI/VBoxContainer/Slot1Data"]
 layout_mode = 2
 icon = ExtResource("5_04kky")
 
-[node name="Slot2" type="Button" parent="AttackSelectUI/SlotSelection/HBoxContainer"]
+[node name="Attack1Name" type="Label" parent="AttackSelectUI/VBoxContainer/Slot1Data"]
+layout_mode = 2
+text = "Attack 1"
+
+[node name="Slot2Data" type="HBoxContainer" parent="AttackSelectUI/VBoxContainer"]
+layout_mode = 2
+
+[node name="Slot2" type="Button" parent="AttackSelectUI/VBoxContainer/Slot2Data"]
 layout_mode = 2
 icon = ExtResource("5_04kky")
 
-[node name="Slot3" type="Button" parent="AttackSelectUI/SlotSelection/HBoxContainer"]
+[node name="Attack2Name" type="Label" parent="AttackSelectUI/VBoxContainer/Slot2Data"]
+layout_mode = 2
+text = "Attack 2"
+
+[node name="Slot3Data" type="HBoxContainer" parent="AttackSelectUI/VBoxContainer"]
+layout_mode = 2
+
+[node name="Slot3" type="Button" parent="AttackSelectUI/VBoxContainer/Slot3Data"]
 layout_mode = 2
 icon = ExtResource("5_04kky")
+
+[node name="Attack3Name" type="Label" parent="AttackSelectUI/VBoxContainer/Slot3Data"]
+layout_mode = 2
+text = "Attack 3"
+
+[node name="UpgradeSelectUI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("6_bwqs5")
 
 [connection signal="button_up" from="MainMenu/Buttons/Play" to="." method="_on_play_button_up"]
 [connection signal="button_up" from="MainMenu/Buttons/Quit" to="." method="_on_quit_button_up"]
 [connection signal="button_up" from="GameOver/Buttons/Retry" to="." method="_on_retry_button_up"]
 [connection signal="button_up" from="GameOver/Buttons/ToMenu" to="." method="_on_to_menu_button_up"]
 [connection signal="button_up" from="AttackSelectUI/StartButton" to="." method="_on_start_button_button_up"]
-[connection signal="button_up" from="AttackSelectUI/SlotSelection/HBoxContainer/Slot1" to="AttackSelectUI" method="_on_slot_1_button_up"]
-[connection signal="button_up" from="AttackSelectUI/SlotSelection/HBoxContainer/Slot2" to="AttackSelectUI" method="_on_slot_2_button_up"]
-[connection signal="button_up" from="AttackSelectUI/SlotSelection/HBoxContainer/Slot3" to="AttackSelectUI" method="_on_slot_3_button_up"]
+[connection signal="button_up" from="AttackSelectUI/VBoxContainer/Slot1Data/Slot1" to="AttackSelectUI" method="_on_slot_1_button_up"]
+[connection signal="button_up" from="AttackSelectUI/VBoxContainer/Slot2Data/Slot2" to="AttackSelectUI" method="_on_slot_2_button_up"]
+[connection signal="button_up" from="AttackSelectUI/VBoxContainer/Slot3Data/Slot3" to="AttackSelectUI" method="_on_slot_3_button_up"]

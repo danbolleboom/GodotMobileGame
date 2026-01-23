@@ -12,6 +12,7 @@ var player: Node;
 var selectedAttack1: PackedScene = null;
 var selectedAttack2: PackedScene = null;
 var selectedAttack3: PackedScene = null;
+var worldTimeScale: int = 1;
 
 func LoadScenesInFile(path: String) -> Array[PackedScene]:
 	var array: Array[PackedScene];

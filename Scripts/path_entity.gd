@@ -20,6 +20,9 @@ func _process(delta: float) -> void:
 	pass
 
 func _physics_process(delta: float) -> void:
+	if Constants.worldTimeScale == 0: return;
+	delta *= Constants.worldTimeScale;
+	
 	pathOffset += delta * (Constants.currentSpeed * speedMultiplier);
 	
 	if pathOffset > path.curve.get_baked_length():

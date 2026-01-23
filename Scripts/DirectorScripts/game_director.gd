@@ -37,6 +37,8 @@ func EnemyDied(_cost: int) -> void:
 		spawnsThisLevel -= enemySpawnData.enemiesPerLevel;
 		level += 1;
 		enemySpawnData.UpdateData(level);
+		Constants.worldTimeScale = 0;
+		Constants.uiManager.GetUpgrades();
 	
 	Constants.uiManager.game.SetLevelProgress(spawnsThisLevel as float / enemySpawnData.enemiesPerLevel);
 

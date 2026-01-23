@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://b7qg3mnrqeywk"]
+
+[ext_resource type="PackedScene" uid="uid://bm8nbrtpv2ed6" path="res://Scenes/attack_modifier.tscn" id="1_ijdc5"]
+[ext_resource type="Script" uid="uid://ohnd4553527k" path="res://Scripts/AttackModifierEffects/ame_dmg_increase.gd" id="2_38qv8"]
+
+[node name="AM_dmg" instance=ExtResource("1_ijdc5")]
+id = "AM_Dmg"
+
+[node name="AME_DmgAdd" type="Node" parent="." index="0"]
+script = ExtResource("2_38qv8")
+damageAdditive = 3.0

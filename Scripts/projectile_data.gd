@@ -7,6 +7,8 @@ extends Node
 
 @export var enemyDamageParticles: PackedScene;
 
+var modifiers: Array[Node];
+
 func _ready() -> void:
 	get_parent().direction = Vector3(randf_range(-spread, spread), 0, 1).normalized();
 
@@ -29,5 +31,13 @@ func _on_projectile_area_entered(area: Area3D) -> void:
 	
 	pierce -= 1;
 	if pierce <= 0:
+		for modifier in modifiers:
+			modifier.OnProjectileDestroyed(self);
 		get_parent().queue_free()
 		return
+
+func Modify(modifiers: Node) -> void:
+	speed = speed * modifiers.speedMutliplier;
+	damage = damage + modifiers.damageAdditive;
+	damage = damage * modifiers.damageMultiplier as int;
+	spread = spread * modifiers.spreadMultiplier;

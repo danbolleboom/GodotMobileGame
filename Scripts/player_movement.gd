@@ -13,7 +13,6 @@ var tilt: float = 0;
 
 @onready var playerData: Node = $PlayerData;
 
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	position = startPosition;
 	Constants.player = self;
@@ -22,8 +21,11 @@ func _ready() -> void:
 func GetHealthRatio() -> float:
 	return playerData.currentHealth as float / playerData.maxHealth;
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	if Constants.worldTimeScale == 0:
+		return; # Game is paused
+	delta *= Constants.worldTimeScale;
+	
 	# Lerp to z == 0
 	position.z = lerp(position.z, targetZ, entranceSpeed * delta);
 	

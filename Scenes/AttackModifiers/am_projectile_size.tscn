@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://cilubow5ncrre"]
+
+[ext_resource type="PackedScene" uid="uid://bm8nbrtpv2ed6" path="res://Scenes/attack_modifier.tscn" id="1_4o2ie"]
+[ext_resource type="Script" uid="uid://df3p3bkhooftd" path="res://Scripts/AttackModifierEffects/ame_proj_size.gd" id="2_t3glj"]
+
+[node name="AM_ProjectileSize" instance=ExtResource("1_4o2ie")]
+id = "AM_ProjSize"
+
+[node name="AME_ProjSize" type="Node" parent="." index="0"]
+script = ExtResource("2_t3glj")
+sizeIncrease = 0.2
+additionalSizePerTier = 0.1

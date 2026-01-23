@@ -6,6 +6,7 @@ extends Node
 @onready var attacks: Node = $AttackSelectUI
 @onready var director: Node = get_tree().root.get_node("World/GameDirector")
 @onready var scoreText: Label = $GameOver/ScoreText
+@onready var updateSelect: Control = $UpgradeSelectUI
 
 var initialised: bool = false;
 
@@ -14,8 +15,9 @@ func _ready() -> void:
 	game.process_mode = Node.PROCESS_MODE_DISABLED;
 	game.hide();
 	end.hide();
-	attacks.hide();
+	updateSelect.hide();
 	menu.show();
+	attacks.hide();
 	Constants.uiManager = self;
 
 
@@ -32,6 +34,11 @@ func PlayerDie() -> void:
 	game.hide();
 	end.show();
 	scoreText.text = "Score: %d00" % Constants.gameDirector.score;
+
+func GetUpgrades() -> void:
+	game.hide();
+	updateSelect.LoadUpgrades();
+	updateSelect.show();
 
 func _on_retry_button_up() -> void:
 	end.hide();

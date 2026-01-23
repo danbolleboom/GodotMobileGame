@@ -17,6 +17,8 @@ func _process(delta: float) -> void:
 	pass
 
 func _physics_process(delta: float) -> void:
+	if Constants.worldTimeScale == 0: return;
+	delta *= Constants.worldTimeScale;
 	var vel = direction * speed * delta
 	position += vel;
 	
