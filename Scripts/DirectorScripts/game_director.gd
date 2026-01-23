@@ -69,6 +69,10 @@ func _process(delta: float) -> void:
 	if !Constants.gameActive: 
 		Constants.currentSpeed = lerp(Constants.currentSpeed, Constants.menuSpeed, 1 * delta);
 	
+	if Constants.worldTimeScale == 0:
+		return;
+	delta *= Constants.worldTimeScale;
+	
 	# Decorations
 	decorationSpawnTimer += delta * (Constants.currentSpeed / Constants.baseSpeed);
 	

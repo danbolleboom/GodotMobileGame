@@ -5,3 +5,9 @@ extends "res://Scripts/attack_modifier_effect.gd"
 
 func ModifyProjectile(data: Node) -> void:
 	data.damage += damageAdditive + (extraPerTier * tier);
+
+func GetDmg() -> float:
+	return damageAdditive + (extraPerTier * tier);
+
+func GetDescription() -> String:
+	return "Increase damage by %d per hit" % GetDmg();

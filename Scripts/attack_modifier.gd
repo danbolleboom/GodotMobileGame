@@ -34,3 +34,10 @@ func _process(delta: float) -> void:
 func RemoveModifier() -> bool:
 	if lifetime == 0: return false;
 	return uptime >= lifetime;
+
+func GetDescription() -> String:
+	var desc = "";
+	for child in get_children():
+		desc += "- " + child.GetDescription() + "\n";
+	
+	return desc;

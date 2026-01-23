@@ -40,6 +40,11 @@ func GetUpgrades() -> void:
 	updateSelect.LoadUpgrades();
 	updateSelect.show();
 
+func HideUpgrades() -> void:
+	updateSelect.hide();
+	game.show();
+	Constants.worldTimeScale = 1;
+
 func _on_retry_button_up() -> void:
 	end.hide();
 	game.show();

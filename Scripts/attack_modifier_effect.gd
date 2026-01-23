@@ -2,6 +2,9 @@ extends Node
 
 var tier: int;
 
+func GetDescription() -> String:
+	return "<no_description>";
+
 func ModifyProjectile(data: Node) -> void:
 	pass
 

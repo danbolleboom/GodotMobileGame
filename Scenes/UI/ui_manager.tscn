@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://cn4bf5orw4u3"]
+[gd_scene load_steps=13 format=3 uid="uid://cn4bf5orw4u3"]
 
 [ext_resource type="Script" uid="uid://ck70o60e7cvpw" path="res://Scripts/UI/ui_manager.gd" id="1_x5yhv"]
 [ext_resource type="Script" uid="uid://bce6bd5bd3xmj" path="res://Scripts/UI/game_ui.gd" id="2_huwks"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://02yu3ceg1413" path="res://Scenes/UI/attack_button.tscn" id="4_88ycu"]
 [ext_resource type="Texture2D" uid="uid://bfftuj6dfqlve" path="res://Images/ability_Shotgun.png" id="5_04kky"]
 [ext_resource type="Script" uid="uid://bux5x8425u7s0" path="res://Scripts/UI/upgrade_select_ui.gd" id="6_bwqs5"]
+[ext_resource type="PackedScene" uid="uid://do0fsi71ikngu" path="res://Scenes/UI/upgrade_button.tscn" id="7_hqs40"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_huwks"]
 bg_color = Color(0, 0, 0, 1)
@@ -261,6 +262,24 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("6_bwqs5")
+upgradeButton = ExtResource("7_hqs40")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UpgradeSelectUI"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="UpgradeButton" parent="UpgradeSelectUI/VBoxContainer" instance=ExtResource("7_hqs40")]
+layout_mode = 2
+
+[node name="UpgradeButton2" parent="UpgradeSelectUI/VBoxContainer" instance=ExtResource("7_hqs40")]
+layout_mode = 2
 
 [connection signal="button_up" from="MainMenu/Buttons/Play" to="." method="_on_play_button_up"]
 [connection signal="button_up" from="MainMenu/Buttons/Quit" to="." method="_on_quit_button_up"]

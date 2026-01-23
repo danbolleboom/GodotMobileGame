@@ -17,9 +17,6 @@ var modifiers: Array[Node];
 func _ready() -> void:
 	Default();
 	
-	var tempModifier = load("res://Scenes/AttackModifiers/am_atk_speed.tscn").instantiate();
-	tempModifier.SetTier(10);
-	AddModifier(tempModifier);
 	UpdateModifiers();
 
 func Default() -> void:
@@ -28,6 +25,10 @@ func Default() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	if Constants.worldTimeScale == 0:
+		return;
+	delta *= Constants.worldTimeScale;
+	
 	attackTimer += delta;
 	if attackTimer >= cooldown:
 		attackTimer = 0

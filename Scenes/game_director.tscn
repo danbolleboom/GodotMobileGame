@@ -17,7 +17,7 @@ decorations = Array[PackedScene]([ExtResource("2_so0fb"), ExtResource("3_66edg")
 script = ExtResource("2_dvpqc")
 startSpawnCooldown = 1.5
 cooldownMultiplierPerLevel = 0.9
-startEnemiesPerLevel = 10
+startEnemiesPerLevel = 1
 enemiesIncreasePerLevel = 5
 
 [node name="Enemies" type="Node" parent="."]
