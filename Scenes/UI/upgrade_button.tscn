@@ -1,10 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://do0fsi71ikngu"]
+[gd_scene format=3 uid="uid://do0fsi71ikngu"]
 
 [ext_resource type="Script" uid="uid://bc6bj356qd1uh" path="res://Scripts/UI/upgrade_button.gd" id="1_vvncj"]
 [ext_resource type="Texture2D" uid="uid://janddwk7ro" path="res://Images/ability_Boomerang.png" id="2_6a6lc"]
 [ext_resource type="Texture2D" uid="uid://lorlxecw77bt" path="res://Images/ability_Minigun.png" id="3_0q5a0"]
 
-[node name="UpgradeButton" type="MarginContainer"]
+[node name="UpgradeButton" type="MarginContainer" unique_id=1596983904]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -12,38 +12,42 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_vvncj")
 
-[node name="Button" type="Button" parent="."]
+[node name="Button" type="Button" parent="." unique_id=1813903778]
 layout_mode = 2
 
-[node name="Container" type="HBoxContainer" parent="."]
+[node name="Container" type="HBoxContainer" parent="." unique_id=145182006]
 layout_mode = 2
 mouse_filter = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Container"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Container" unique_id=204586067]
 layout_mode = 2
 size_flags_vertical = 4
 
-[node name="UpgradeIcon" type="TextureRect" parent="Container/VBoxContainer"]
+[node name="UpgradeIcon" type="TextureRect" parent="Container/VBoxContainer" unique_id=1800705989]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 texture = ExtResource("2_6a6lc")
 
-[node name="UpgradeName" type="Label" parent="Container/VBoxContainer"]
+[node name="UpgradeName" type="Label" parent="Container/VBoxContainer" unique_id=1688203722]
+custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
 text = "Upgrade Name"
+horizontal_alignment = 1
 
-[node name="Traits" type="Label" parent="Container"]
+[node name="Traits" type="Label" parent="Container" unique_id=1585511928]
+custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
 text = "- Attribute 1
 - Attribute 2
 - Attribute 3"
+autowrap_mode = 2
 
-[node name="Affects" type="Label" parent="Container"]
+[node name="Affects" type="Label" parent="Container" unique_id=589129998]
 layout_mode = 2
 text = "Affects: "
 
-[node name="AffectsIcon" type="TextureRect" parent="Container"]
+[node name="AffectsIcon" type="TextureRect" parent="Container" unique_id=833302513]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4

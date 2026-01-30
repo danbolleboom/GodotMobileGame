@@ -36,8 +36,8 @@ func _on_projectile_area_entered(area: Area3D) -> void:
 		get_parent().queue_free()
 		return
 
-func Modify(modifiers: Node) -> void:
-	speed = speed * modifiers.speedMutliplier;
-	damage = damage + modifiers.damageAdditive;
-	damage = damage * modifiers.damageMultiplier as int;
-	spread = spread * modifiers.spreadMultiplier;
+func Modify(modifier: Node) -> void:
+	speed = speed * modifier.speedMutliplier;
+	damage = damage + modifier.damageAdditive;
+	damage = damage * modifier.damageMultiplier as int;
+	spread = spread * modifier.spreadMultiplier;

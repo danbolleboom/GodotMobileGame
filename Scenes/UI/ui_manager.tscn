@@ -278,6 +278,14 @@ alignment = 1
 [node name="UpgradeButton" parent="UpgradeSelectUI/VBoxContainer" instance=ExtResource("7_hqs40")]
 layout_mode = 2
 
+[node name="UpgradeName" parent="UpgradeSelectUI/VBoxContainer/UpgradeButton/Container/VBoxContainer" index="1"]
+text = "test"
+
+[node name="Traits" parent="UpgradeSelectUI/VBoxContainer/UpgradeButton/Container" index="1"]
+text = "- Attribute 1 --------------------------------------------
+- Attribute 2
+- Attribute 3"
+
 [node name="UpgradeButton2" parent="UpgradeSelectUI/VBoxContainer" instance=ExtResource("7_hqs40")]
 layout_mode = 2
 
@@ -289,3 +297,5 @@ layout_mode = 2
 [connection signal="button_up" from="AttackSelectUI/VBoxContainer/Slot1Data/Slot1" to="AttackSelectUI" method="_on_slot_1_button_up"]
 [connection signal="button_up" from="AttackSelectUI/VBoxContainer/Slot2Data/Slot2" to="AttackSelectUI" method="_on_slot_2_button_up"]
 [connection signal="button_up" from="AttackSelectUI/VBoxContainer/Slot3Data/Slot3" to="AttackSelectUI" method="_on_slot_3_button_up"]
+
+[editable path="UpgradeSelectUI/VBoxContainer/UpgradeButton"]
