@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://dmduqpn6ol6dv"]
+
+[ext_resource type="PackedScene" uid="uid://p5d6b0d2m6uc" path="res://Scenes/path_entity.tscn" id="1_84iyw"]
+[ext_resource type="ArrayMesh" uid="uid://drswp3rlpnv5j" path="res://Models/shitass_rock.obj" id="2_d5vse"]
+
+[node name="DecorationRock2" unique_id=636296819 instance=ExtResource("1_84iyw")]
+
+[node name="Area" parent="." index="0" unique_id=1854592994]
+randomRotation = true
+
+[node name="MeshInstance3D" parent="Area" index="0" unique_id=1652555098]
+mesh = ExtResource("2_d5vse")

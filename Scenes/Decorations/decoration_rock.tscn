@@ -1,12 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://0it8tuwigt5"]
+[gd_scene format=3 uid="uid://0it8tuwigt5"]
 
 [ext_resource type="PackedScene" uid="uid://p5d6b0d2m6uc" path="res://Scenes/path_entity.tscn" id="1_o4psk"]
 
-[sub_resource type="SphereMesh" id="SphereMesh_o4psk"]
+[node name="DecorationRock" unique_id=1089273221 instance=ExtResource("1_o4psk")]
 
-[node name="DecorationRock" instance=ExtResource("1_o4psk")]
-speed = 10.0
-
-[node name="MeshInstance3D" parent="." index="0"]
-transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, 0)
-mesh = SubResource("SphereMesh_o4psk")
+[node name="Area" parent="." index="0" unique_id=1854592994]
+randomRotation = true

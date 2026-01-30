@@ -1,4 +1,4 @@
-extends Area3D
+extends Node3D
 
 @export var speedMultiplier: float;
 @export var yOffset: float;
@@ -12,7 +12,7 @@ var pathOffset = 0;
 
 func _ready() -> void:
 	# Spawn below map so it doesn't pop in at (0, 0, 0)
-	position = Vector3(0, -10, 0);
+	position = Vector3(0, -1000, 0);
 	if has_node("EnemyProjectileData"):
 		print("hi")
 

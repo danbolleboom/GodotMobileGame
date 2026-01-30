@@ -1,7 +1,6 @@
 extends Node
 
 @export var playerScene: PackedScene;
-@export var decorations: Array[PackedScene]
 
 @onready var enemySpawnData = $EnemySpawnData;
 @onready var enemiesParent = $Enemies;
@@ -12,6 +11,7 @@ extends Node
 @onready var player = load(playerScene.resource_path);
 
 var enemies: Array[PackedScene]
+var decorations: Array[PackedScene]
 
 var level: int = 0;
 var spawnsThisLevel: int = 0;
@@ -28,6 +28,7 @@ func _ready() -> void:
 	
 	# Load enemies
 	enemies = Constants.LoadScenesInFile("Scenes/Enemies")
+	decorations = Constants.LoadScenesInFile("Scenes/Decorations")
 
 func EnemyDied(_cost: int) -> void:
 	spawnsThisLevel += _cost;
