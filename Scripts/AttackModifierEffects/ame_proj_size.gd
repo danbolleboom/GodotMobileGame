@@ -11,4 +11,4 @@ func GetVal() -> float:
 	return (sizeIncrease + (additionalSizePerTier * (tier - 1)));
 
 func GetDescription() -> String:
-	return "Increase projectile size by %fx" % GetVal();
+	return "Increase projectile size by %0.1fx" % GetVal();

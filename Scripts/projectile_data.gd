@@ -12,6 +12,12 @@ var modifiers: Array[Node];
 func _ready() -> void:
 	get_parent().direction = Vector3(randf_range(-spread, spread), 0, 1).normalized();
 
+func _process(delta: float) -> void:
+	delta *= Constants.worldTimeScale;
+	
+	for modifier in modifiers:
+		modifier.ProjectileUpdate(get_parent(), delta);
+
 func _on_projectile_area_entered(area: Area3D) -> void:
 	if area.get_parent().has_node("EnemyData"):
 		area.get_parent().get_node("EnemyData").Damage(damage);

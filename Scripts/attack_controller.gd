@@ -17,17 +17,23 @@ var modifiers: Array[Node];
 func _ready() -> void:
 	Default();
 	
+	#AddModifier(load("res://Scenes/AttackModifiers/am_homing.tscn").instantiate());
+	
 	UpdateModifiers();
 
 func Default() -> void:
 	cooldown = startCooldown;
 	multishot = 0.0;
+	attackTimer = cooldown;
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	if Constants.worldTimeScale == 0:
 		return;
 	delta *= Constants.worldTimeScale;
+	
+	for modifier in modifiers:
+		modifier.Update(delta);
 	
 	attackTimer += delta;
 	if attackTimer >= cooldown:

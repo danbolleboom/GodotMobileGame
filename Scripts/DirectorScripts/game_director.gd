@@ -41,7 +41,7 @@ func EnemyDied(_cost: int) -> void:
 		Constants.worldTimeScale = 0;
 		Constants.uiManager.GetUpgrades();
 	
-	Constants.uiManager.game.SetLevelProgress(spawnsThisLevel as float / enemySpawnData.enemiesPerLevel);
+	Constants.uiManager.game.SetLevelProgress(spawnsThisLevel as float / enemySpawnData.enemiesPerLevel as float);
 
 func StartGame() -> void:
 	Constants.gameActive = true;

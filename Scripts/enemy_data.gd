@@ -27,7 +27,5 @@ func Damage(_damage: int) -> void:
 
 
 func _on_area_area_entered(area: Area3D) -> void:
-	print("Collide")
 	if area.has_node("PlayerData"):
 		area.get_node("PlayerData").Damage(contactDamage);
-		print("Hit")

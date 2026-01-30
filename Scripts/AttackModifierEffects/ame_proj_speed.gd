@@ -10,4 +10,4 @@ func GetVal() -> float:
 	return speedMultiplier + (additionalMultPerTier * (tier - 1));
 
 func GetDescription() -> String:
-	return "Increase projectile speed by %fx" % (GetVal() - 1);
+	return "Increase projectile speed by %0.1fx" % (GetVal() - 1);

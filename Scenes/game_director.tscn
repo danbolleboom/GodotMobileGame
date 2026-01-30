@@ -14,7 +14,7 @@ playerScene = ExtResource("2_e0ghr")
 script = ExtResource("2_dvpqc")
 startSpawnCooldown = 1.5
 cooldownMultiplierPerLevel = 0.9
-startEnemiesPerLevel = 1
+startEnemiesPerLevel = 10
 enemiesIncreasePerLevel = 5
 
 [node name="Enemies" type="Node" parent="." unique_id=359855840]

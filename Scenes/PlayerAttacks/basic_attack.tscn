@@ -1,16 +1,16 @@
-[gd_scene load_steps=5 format=3 uid="uid://det6gdmhaeelx"]
+[gd_scene format=3 uid="uid://det6gdmhaeelx"]
 
 [ext_resource type="Script" uid="uid://1cu5bi8y6av6" path="res://Scripts/attack_controller.gd" id="1_6oduf"]
 [ext_resource type="PackedScene" uid="uid://c5ueclcie2is4" path="res://Scenes/PlayerProjectiles/projectile.tscn" id="2_8tbbm"]
 [ext_resource type="Script" uid="uid://s08txm54fkuk" path="res://Scripts/PlayerAttacks/player_attack_data.gd" id="3_8tbbm"]
 [ext_resource type="Texture2D" uid="uid://lorlxecw77bt" path="res://Images/ability_Minigun.png" id="4_t62br"]
 
-[node name="BasicAttack" type="Node3D"]
+[node name="BasicAttack" type="Node3D" unique_id=978615731]
 script = ExtResource("1_6oduf")
 startCooldown = 0.3
 projectileScene = ExtResource("2_8tbbm")
 
-[node name="AttackData" type="Node" parent="."]
+[node name="AttackData" type="Node" parent="." unique_id=1235803415]
 script = ExtResource("3_8tbbm")
 attackName = "Pistol"
 attackDescription = "Shoots weak projectiles"

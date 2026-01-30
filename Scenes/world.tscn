@@ -1,7 +1,6 @@
-[gd_scene load_steps=9 format=3 uid="uid://dnddunlw74rcw"]
+[gd_scene format=3 uid="uid://dnddunlw74rcw"]
 
 [ext_resource type="PackedScene" uid="uid://cyslwb6wi17bd" path="res://Scenes/game_director.tscn" id="2_5a7ea"]
-[ext_resource type="PackedScene" uid="uid://b6nr0kxkm8l3k" path="res://Scenes/Enemies/enemy_base.tscn" id="2_go701"]
 [ext_resource type="PackedScene" uid="uid://cn4bf5orw4u3" path="res://Scenes/UI/ui_manager.tscn" id="5_fo5ed"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_a02cp"]
@@ -21,47 +20,46 @@ _data = {
 }
 point_count = 3
 
-[node name="World" type="Node3D"]
+[node name="World" type="Node3D" unique_id=1220631777]
 
-[node name="Camera3D" type="Camera3D" parent="."]
+[node name="Camera3D" type="Camera3D" parent="." unique_id=1497756196]
 transform = Transform3D(-1, 4.371139e-08, -7.5710346e-08, 0, 0.8660254, 0.5, 8.742278e-08, 0.5, -0.8660254, 0, 6.745, -4.796)
 
-[node name="Lighting" type="Node3D" parent="."]
+[node name="Lighting" type="Node3D" parent="." unique_id=532124723]
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Lighting"]
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Lighting" unique_id=1119831056]
 transform = Transform3D(-0.9999836, -0.003059011, 0.00483869, 0, 0.8452525, 0.5343671, -0.0057245498, 0.5343583, -0.8452387, 0, 13.296884, 23.258636)
 
-[node name="Floor" type="Node3D" parent="."]
+[node name="Floor" type="Node3D" parent="." unique_id=1289407057]
 
-[node name="GroundCollision" type="StaticBody3D" parent="Floor"]
+[node name="GroundCollision" type="StaticBody3D" parent="Floor" unique_id=1780515170]
 collision_layer = 32
 collision_mask = 0
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/GroundCollision"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/GroundCollision" unique_id=111218285]
 transform = Transform3D(1, 0, 0, 0, 0.8660254, 0.5, 0, -0.5, 0.8660254, 0, 6.4275885, 12.033555)
 shape = SubResource("BoxShape3D_a02cp")
 
-[node name="MeshParent" type="Node3D" parent="Floor"]
+[node name="MeshParent" type="Node3D" parent="Floor" unique_id=725213053]
 transform = Transform3D(-50, 0, -4.371139e-06, 0, 50, 0, 4.371139e-06, 0, -50, 0, -25, 34.912617)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor/MeshParent"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor/MeshParent" unique_id=1616683370]
 transform = Transform3D(-4.371139e-08, 1, -4.371139e-08, 0, -4.371139e-08, -1, -1, -4.371139e-08, 1.9106855e-15, 0, 0, 0)
 mesh = SubResource("CylinderMesh_a02cp")
 skeleton = NodePath("../..")
 surface_material_override/0 = SubResource("StandardMaterial3D_5a7ea")
 
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="Floor/MeshParent"]
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Floor/MeshParent" unique_id=1930345523]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 1)
 mesh = SubResource("PlaneMesh_go701")
 skeleton = NodePath("../..")
 surface_material_override/0 = SubResource("StandardMaterial3D_5a7ea")
 
-[node name="MovementPath" type="Path3D" parent="."]
+[node name="MovementPath" type="Path3D" parent="." unique_id=96059944]
 curve = SubResource("Curve3D_a02cp")
 
-[node name="GameDirector" parent="." instance=ExtResource("2_5a7ea")]
-enemies = Array[PackedScene]([ExtResource("2_go701")])
+[node name="GameDirector" parent="." unique_id=1488064344 instance=ExtResource("2_5a7ea")]
 
-[node name="ProjectileParent" type="Node" parent="."]
+[node name="ProjectileParent" type="Node" parent="." unique_id=1403705242]
 
-[node name="UiManager" parent="." instance=ExtResource("5_fo5ed")]
+[node name="UiManager" parent="." unique_id=941501729 instance=ExtResource("5_fo5ed")]

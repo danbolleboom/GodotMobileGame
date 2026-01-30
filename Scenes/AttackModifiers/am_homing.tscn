@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://cl7gxvlcapuah"]
+
+[ext_resource type="PackedScene" uid="uid://bm8nbrtpv2ed6" path="res://Scenes/attack_modifier.tscn" id="1_bef36"]
+[ext_resource type="Script" uid="uid://cmwmafies3gm5" path="res://Scripts/AttackModifierEffects/ame_homing.gd" id="2_kyh3p"]
+[ext_resource type="Script" uid="uid://bapowwt8y6a18" path="res://Scripts/AttackModifierEffects/ame_proj_speed.gd" id="3_kyh3p"]
+[ext_resource type="Script" uid="uid://66wc0j37727s" path="res://Scripts/AttackModifierEffects/ame_pierce.gd" id="4_35r0j"]
+[ext_resource type="Script" uid="uid://cj2vufca3hc6g" path="res://Scripts/AttackModifierEffects/ame_atk_speed.gd" id="5_abhx6"]
+
+[node name="AM_Homing" unique_id=2136550146 instance=ExtResource("1_bef36")]
+id = "AME_Homing"
+legendary = true
+
+[node name="AME_Homing" type="Node" parent="." index="0" unique_id=1129279620]
+script = ExtResource("2_kyh3p")
+turnSpeed = 5.0
+
+[node name="AME_ProjSpeed" type="Node" parent="." index="1" unique_id=687076483]
+script = ExtResource("3_kyh3p")
+speedMultiplier = 1.5
+additionalMultPerTier = 0.1
+
+[node name="AME_Pierce" type="Node" parent="." index="2" unique_id=1775104463]
+script = ExtResource("4_35r0j")
+startPierceIncrease = 2
+pierceIncreasePerTier = 1
+
+[node name="AME_AtkSpeed" type="Node" parent="." index="3" unique_id=401449595]
+script = ExtResource("5_abhx6")
+speedMultiplier = 2.0

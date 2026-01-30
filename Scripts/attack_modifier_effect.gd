@@ -16,3 +16,6 @@ func OnProjectileDestroyed(projectile: Node) -> void:
 
 func Update(delta: float) -> void:
 	pass
+
+func ProjectileUpdate(projectile: Node3D, delta: float):
+	pass

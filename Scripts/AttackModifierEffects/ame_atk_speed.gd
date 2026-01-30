@@ -10,4 +10,4 @@ func GetMult() -> float:
 	return speedMultiplier - (additionalMultPerTier * (tier - 1));
 
 func GetDescription() -> String:
-	return "Reduce attack cooldown by %f percent" % ((1 - GetMult()) * 100);
+	return "%s attack by %0.0f percent" % [ "Increase" if speedMultiplier > 1 else "Reduce", abs((1 - GetMult()) * 100)];
